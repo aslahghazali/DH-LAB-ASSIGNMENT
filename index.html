@@ -1,0 +1,429 @@
+<!doctype html>
+<!--
+  DIGITAL HUMANITIES EXHIBITION TEMPLATE
+  Quick start:
+  1. Replace every item marked .
+  2. Put each piece of work inside an "Assignment" block.
+  3. Save this file as index.html, upload it to a GitHub repository, and enable GitHub Pages.
+  Full publishing steps are in README.md. No software or build step is needed.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A student digital humanities portfolio exhibition.">
+    <title>Aslah Ghazali&rsquo;s Digital Humanities Portfolio</title>
+    <style>
+      :root {
+        --page-gutter: clamp(1rem, 4vw, 2rem);
+        --content-width: 1180px;
+        --ink: #18231f;
+        --muted: #52635b;
+        --paper: #f6f4ee;
+        --surface: #fffefa;
+        --line: #d8d8cf;
+        --green: #0d5b4f;
+        --green-deep: #073f37;
+        --gold: #c89b3c;
+        --focus: #bf4b0d;
+        --shadow: 0 18px 45px rgb(24 35 31 / 10%);
+      }
+
+      *, *::before, *::after { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          linear-gradient(90deg, transparent 0, transparent 24px, rgb(13 91 79 / 4%) 25px, transparent 26px) 0 0 / 100% 100%,
+          var(--paper);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(1rem, 0.2vw + 0.95rem, 1.125rem);
+        line-height: 1.65;
+        overflow-wrap: break-word;
+      }
+
+      a { color: var(--green); text-underline-offset: 0.16em; }
+      a:hover { color: var(--green-deep); }
+      a:focus-visible, summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+      img, picture, video, iframe, svg, canvas { max-width: 100%; }
+      img, video, svg, canvas { height: auto; }
+      iframe { width: 100%; border: 0; }
+
+      .skip-link {
+        position: absolute;
+        top: -5rem;
+        left: 1rem;
+        z-index: 10;
+        padding: 0.65rem 0.9rem;
+        color: #fff;
+        background: var(--green-deep);
+      }
+      .skip-link:focus { top: 1rem; }
+
+      .site-header {
+        color: #fff;
+        background: var(--green-deep);
+        border-bottom: 5px solid var(--gold);
+      }
+      .header-inner, .layout, .site-footer { width: min(100%, var(--content-width)); margin: 0 auto; }
+      .header-inner { padding: 1.25rem var(--page-gutter) 1.4rem; }
+      .eyebrow, .label {
+        margin: 0;
+        color: inherit;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.74rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.25;
+        text-transform: uppercase;
+      }
+      .eyebrow { color: #e7d7aa; }
+      .wordmark { margin: 0.2rem 0 0; font-size: 1.05rem; }
+      .course-line { margin: 0.25rem 0 0; color: #d5e2dc; font-size: 0.92rem; }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+        gap: clamp(1.5rem, 5vw, 5rem);
+        padding: clamp(2rem, 6vw, 5.5rem) var(--page-gutter) 4rem;
+      }
+
+      .student-card {
+        align-self: start;
+        padding: 1.4rem;
+        background: var(--surface);
+        border-top: 5px solid var(--gold);
+        box-shadow: var(--shadow);
+      }
+      .student-card h2 { margin: 0 0 1rem; font-size: 1.25rem; }
+      .metadata { margin: 0; }
+      .metadata > div { padding: 0.75rem 0; border-top: 1px solid var(--line); }
+      .metadata > div:first-child { border-top: 0; }
+      .metadata dt { font-family: Arial, Helvetica, sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+      .metadata dd { margin: 0.16rem 0 0; font-size: 0.98rem; }
+      .student-note { margin: 1rem 0 0; color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+      main { min-width: 0; container-type: inline-size; }
+      .hero { padding: 0 0 2.7rem; border-bottom: 1px solid var(--line); }
+      .project-kicker { color: var(--green); }
+      h1, h2, h3 { color: var(--ink); line-height: 1.15; }
+      h1 { max-width: 17ch; margin: 0.55rem 0 1.25rem; font-size: clamp(2.4rem, 6vw, 5.4rem); letter-spacing: -0.045em; }
+      h2 { margin: 0; font-size: clamp(1.65rem, 3vw, 2.4rem); letter-spacing: -0.025em; }
+      h3 { margin: 0 0 0.45rem; font-size: 1.2rem; }
+      .abstract { max-width: 68ch; margin: 0; font-size: clamp(1.12rem, 2vw, 1.35rem); line-height: 1.6; }
+      .abstract strong { color: var(--green-deep); }
+
+      .content-section { padding: 3.2rem 0; border-bottom: 1px solid var(--line); }
+      .section-heading { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 1.25rem; }
+      .section-number { color: var(--gold); font-family: Arial, Helvetica, sans-serif; font-size: 0.85rem; font-weight: 700; }
+      .content-section p, .content-section li { max-width: 72ch; }
+
+      /* EDIT HERE: Replace this example box with your essay, timeline, image gallery, map,
+         data visualisation, embedded media, or another form of project work. */
+      .edit-placeholder {
+        margin-top: 1.5rem;
+        padding: clamp(1.25rem, 4vw, 2.25rem);
+        background: #e8f0eb;
+        border: 2px dashed #5a8679;
+      }
+      .edit-placeholder > :first-child { margin-top: 0; }
+      .edit-placeholder > :last-child { margin-bottom: 0; }
+      .edit-callout { color: var(--green-deep); font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; }
+
+      .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 1.75rem; }
+      .project-grid article { padding: 1.25rem; background: var(--surface); border: 1px solid var(--line); }
+      .project-grid p { margin-bottom: 0; font-size: 0.95rem; }
+
+      .assignment-list { display: grid; gap: clamp(1rem, 3vw, 1.5rem); margin-top: 1.8rem; }
+      .assignment {
+        padding: clamp(1.3rem, 4vw, 2.1rem);
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-left: 6px solid var(--green);
+      }
+      .assignment header { display: grid; grid-template-columns: auto 1fr; gap: 0.8rem 1rem; align-items: baseline; }
+      .assignment-index { color: var(--gold); font-family: Arial, Helvetica, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; }
+      .assignment h3 { margin: 0; font-size: clamp(1.35rem, 2.5vw, 1.9rem); }
+      .assignment .assignment-abstract { margin: 1rem 0 0; font-size: 1.04rem; }
+      .assignment-repository { margin: 1.15rem 0 0; }
+      .repository-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        max-width: 100%;
+        padding: 0.55rem 0.8rem;
+        color: #fff;
+        background: var(--green);
+        border: 1px solid var(--green);
+        border-radius: 0.2rem;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 0.84rem;
+        font-weight: 700;
+        line-height: 1.25;
+        text-decoration: none;
+      }
+      .repository-link::after { content: "\\2197"; font-size: 1rem; }
+      .repository-link:hover { color: #fff; background: var(--green-deep); border-color: var(--green-deep); }
+      .assignment-body { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+      .assignment-body > :last-child { margin-bottom: 0; }
+      .contents-nav { margin-top: 2rem; padding: 1.15rem 1.25rem; background: #e8f0eb; border-left: 4px solid var(--gold); }
+      .contents-nav ul { display: flex; flex-wrap: wrap; gap: 0.3rem 1.2rem; margin: 0.5rem 0 0; padding-left: 1.2rem; }
+      .contents-nav[hidden] { display: none; }
+
+      figure { margin: 1.75rem 0; }
+      figure img { display: block; width: 100%; max-width: 900px; height: auto; border: 1px solid var(--line); }
+      figcaption { margin-top: 0.65rem; color: var(--muted); font-size: 0.9rem; }
+      .media-frame {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        margin: 1.5rem 0;
+        background: var(--ink);
+      }
+      .media-frame > iframe, .media-frame > video { width: 100%; height: 100%; object-fit: contain; }
+
+      details { margin-top: 1.5rem; padding: 1rem 1.2rem; background: var(--surface); border-left: 4px solid var(--gold); }
+      summary { cursor: pointer; color: var(--green-deep); font-family: Arial, Helvetica, sans-serif; font-weight: 700; }
+      details p { margin-bottom: 0; }
+
+      .citation-list { padding-left: 1.3rem; }
+      .citation-list li { margin: 0.65rem 0; }
+      .site-footer { padding: 2.25rem var(--page-gutter) 3rem; color: var(--muted); font-size: 0.88rem; }
+      .site-footer p { margin: 0; }
+
+      @media (min-width: 900px) {
+        .student-card { position: sticky; top: 1.25rem; }
+      }
+
+      @media (max-width: 860px) {
+        .layout { display: block; padding-top: 2rem; }
+        .student-card { margin-bottom: 2.5rem; }
+      }
+
+      /* Container queries keep assignment cards legible even when embedded in a narrow layout. */
+      @container (max-width: 34rem) {
+        .assignment header { grid-template-columns: 1fr; gap: 0.35rem; }
+        .contents-nav ul { display: grid; gap: 0.45rem; }
+      }
+
+      @media (max-width: 480px) {
+        .section-heading { gap: 0.6rem; }
+        .assignment { border-left-width: 4px; }
+        .contents-nav { padding: 1rem; }
+        .project-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --ink: #eef4ef;
+          --muted: #b5c3bc;
+          --paper: #101714;
+          --surface: #18221d;
+          --line: #415148;
+          --green: #81c8ae;
+          --green-deep: #c2ebd9;
+          --gold: #e5bd68;
+          --focus: #ffb26a;
+          --shadow: 0 18px 45px rgb(0 0 0 / 24%);
+        }
+        .site-header { color: #f5fff9; background: #062d28; }
+        .eyebrow { color: #f3d78c; }
+        .course-line { color: #d7e8df; }
+        .edit-placeholder, .contents-nav { background: #16372e; }
+        .edit-callout, .abstract strong, summary { color: #b9eed8; }
+        .repository-link { color: #062d28; background: #9fd7bd; border-color: #9fd7bd; }
+        .repository-link:hover { color: #062d28; background: #c2ebd9; border-color: #c2ebd9; }
+      }
+
+      @media print {
+        .site-header { color: var(--ink); background: transparent; border: 0; }
+        .layout { display: block; padding: 1rem 0; }
+        .student-card { margin: 1rem 0 2rem; box-shadow: none; border: 1px solid var(--line); }
+        a { color: var(--ink); }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to project</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <p class="eyebrow">Digital Humanities Student Exhibition</p>
+        <p class="wordmark">IIT (ISM) Dhanbad &middot; Department of HSS</p>
+        <p class="course-line">MA in DH &middot; Session 2026&ndash;27</p>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="student-card" aria-labelledby="student-details-heading">
+        <h2 id="student-details-heading">Student details</h2>
+
+        <!-- Keep these six items in this order. Replace only the value for Name. -->
+        <dl class="metadata">
+          <div>
+            <dt>Name</dt>
+            <dd>ASLAH GHAZALI</dd>
+          </div>
+          <div>
+            <dt>Assignment</dt>
+            <dd>Digital Humanities</dd>
+          </div>
+          <div>
+            <dt>Session</dt>
+            <dd>2026-27</dd>
+          </div>
+          <div>
+            <dt>Course</dt>
+            <dd>MA in DH</dd>
+          </div>
+          <div>
+            <dt>Department</dt>
+            <dd>HSS</dd>
+          </div>
+          <div>
+            <dt>Institution</dt>
+            <dd>IIT  Dhanbad</dd>
+          </div>
+        </dl>
+        
+      </aside>
+
+      <main id="main-content">
+        <section class="hero" aria-labelledby="portfolio-title">
+          <p class="label project-kicker">Student portfolio</p>
+          <h1 id="portfolio-title">Aslah Ghazali&rsquo;s Digital Humanities Portfolio</h1>
+          <p class="abstract"><strong>Portfolio introduction.</strong> Across these projects, I explore how digital methods can help us read language, literature and culture more closely. I have worked with Malayalam words in Manglish, literary references to Indian plants and animals, spelling rules, and patterns in a short story. Each project begins with a practical question and asks what its evidence can support. I use code and language models to organise material, then check their results against the source texts and the limits of each method. The exhibitions below share the work, the findings and the questions that remain.</p>
+
+          <nav class="contents-nav" aria-label="Assignments on this page">
+            <p class="label">On this page</p>
+            <ul>
+              <li><a href="#assignment-1">Assignment 01: Malayalam Stopwords</a> · <a href="https://aslahghazali.github.io/stopwordsmalayalam/#abstract" target="_blank" rel="noopener noreferrer">Project website</a></li>
+              <li><a href="#assignment-2">Assignment 02: RAG Flora and Fauna</a> · <a href="https://aslahghazali.github.io/ragfloraandfauna/" target="_blank" rel="noopener noreferrer">Project website</a></li>
+              <li><a href="#assignment-3">Assignment 03: Spelling Checker Skill</a> · <a href="https://aslahghazali.github.io/spellingcheckerskill/" target="_blank" rel="noopener noreferrer">Project website</a></li>
+              <li><a href="#assignment-4">Assignment 04: Synthetic Reading: The Necklace</a> · <a href="https://aslahghazali.github.io/sr-necklace/" target="_blank" rel="noopener noreferrer">Project website</a></li>
+            </ul>
+          </nav>
+        </section>
+        <section class="content-section" aria-labelledby="assignments-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">01</span>
+            <h2 id="assignments-heading">Assignments</h2>
+          </div>
+
+          <div class="assignment-list">
+            <article class="assignment" id="assignment-1" aria-labelledby="assignment-1-title" data-site="https://aslahghazali.github.io/stopwordsmalayalam/#abstract">
+              <header><span class="assignment-index">Assignment 01</span><h3 id="assignment-1-title">Malayalam Stopwords: Malayalam Stop Words in Manglish</h3></header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> This project asks how a practical list of Malayalam stop words can support text processing when the words are written in Manglish, or Roman script. It brings together common function words in a Python set for use in basic text-cleaning work. The project presents the list as a starting resource rather than a complete or formally validated lexicon. Its examples also show why spelling variation and context matter: filtering a word mechanically can remove meaning as well as noise.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/aslahghazali/stopwordsmalayalam" target="_blank" rel="noopener noreferrer">View the GitHub repository</a> <span aria-hidden="true">·</span> <a class="repository-link" href="https://aslahghazali.github.io/stopwordsmalayalam/#abstract" target="_blank" rel="noopener noreferrer">Visit the project website</a></p>
+              <div class="assignment-body"><p class="edit-callout">Visible assignment work</p><p>The exhibition shows Manglish examples, a simple preprocessing map and notes on coverage, tokenisation and spelling variation. It explains how the list can be applied and where its limits should guide a reader.</p></div>
+            </article>
+
+            <article class="assignment" id="assignment-2" aria-labelledby="assignment-2-title" data-site="https://aslahghazali.github.io/ragfloraandfauna/">
+              <header><span class="assignment-index">Assignment 02</span><h3 id="assignment-2-title">RAG Flora and Fauna</h3></header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> This study asks whether a small language model using retrieval-augmented generation can identify plants and animals named in Indian literary texts. Eight works were queried with Gemma 3 4B through AnythingLLM and LM Studio; after an initial prompt performed poorly, a source-specific prompt was used across the corpus. Of 106 model-generated entries, only 19 were fully correct, while many quotations could not be found in the books. A separate, text-checked inventory records 509 entries, including 469 verified names and 40 ambiguous cases. The gap between the two lists points to limited retrieval, model and prompt bias, colonial translation choices, and categories that do not fit every cultural reference.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/aslahghazali/ragfloraandfauna" target="_blank" rel="noopener noreferrer">View the GitHub repository</a> <span aria-hidden="true">·</span> <a class="repository-link" href="https://aslahghazali.github.io/ragfloraandfauna/" target="_blank" rel="noopener noreferrer">Visit the project website</a></p>
+              <div class="assignment-body"><p class="edit-callout">Visible assignment work</p><p>The exhibition compares the model’s suggestions with a verified, quotation-based inventory. It also follows the sources of error, from missing passages and invented quotations to category mistakes and culturally specific plant names.</p></div>
+            </article>
+
+            <article class="assignment" id="assignment-3" aria-labelledby="assignment-3-title" data-site="https://aslahghazali.github.io/spellingcheckerskill/">
+              <header><span class="assignment-index">Assignment 03</span><h3 id="assignment-3-title">Spelling Checker Skill</h3></header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> This project builds a small writing assistant for spelling checks. It can flag likely errors, return a corrected version, explain changes, or follow a requested British or American spelling convention. British English is the default. The skill aims to preserve a writer’s meaning, tone and sentence structure, and to flag uncertain names or specialist terms rather than silently changing them. Its narrow remit makes clear where automated correction can help and where a writer’s judgement remains necessary.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/aslahghazali/spellingcheckerskill" target="_blank" rel="noopener noreferrer">View the GitHub repository</a> <span aria-hidden="true">·</span> <a class="repository-link" href="https://aslahghazali.github.io/spellingcheckerskill/" target="_blank" rel="noopener noreferrer">Visit the project website</a></p>
+              <div class="assignment-body"><p class="edit-callout">Visible assignment work</p><p>The page presents the skill’s commands, a short correction example and a five-step workflow, from reading the request to returning the checked text. Its examples show how the tool keeps the writer’s phrasing intact.</p></div>
+            </article>
+
+            <article class="assignment" id="assignment-4" aria-labelledby="assignment-4-title" data-site="https://aslahghazali.github.io/sr-necklace/">
+              <header><span class="assignment-index">Assignment 04</span><h3 id="assignment-4-title">Synthetic Reading: The Necklace</h3></header>
+              <p class="assignment-abstract"><strong>Abstract.</strong> This project uses language-model-assisted phrase analysis to examine how Guy de Maupassant’s “The Necklace” links social aspiration, appearance, money and mistaken ideas of value. The story is divided into 13 researcher-defined segments and four narrative stages; extracted phrases are checked against the text and grouped under four interpretive dimensions. The counts show a movement from Mathilde’s longing and the ball to loss, debt and the final revelation about the imitation necklace. They support a close reading of the story, while remaining descriptive: phrase counts alone cannot establish literary meaning.</p>
+              <p class="assignment-repository"><a class="repository-link" href="https://github.com/aslahghazali/sr-necklace" target="_blank" rel="noopener noreferrer">View the GitHub repository</a> <span aria-hidden="true">·</span> <a class="repository-link" href="https://aslahghazali.github.io/sr-necklace/" target="_blank" rel="noopener noreferrer">Visit the project website</a></p>
+              <div class="assignment-body"><p class="edit-callout">Visible assignment work</p><p>The project presents four stages of the story, its phrase categories and interactive visualisations, including patterns by segment and theme. A report sets out the research question, method, counts and interpretive limits.</p><p><a href="https://aslahghazali.github.io/sr-necklace/report.html" target="_blank" rel="noopener noreferrer">Read the research report</a> · <a href="https://aslahghazali.github.io/sr-necklace/visualisations.html" target="_blank" rel="noopener noreferrer">Explore the visualisations</a></p></div>
+            </article>
+          </div>
+        </section>
+        <section class="content-section" aria-labelledby="reflection-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">02</span>
+            <h2 id="reflection-heading">Portfolio reflection</h2>
+          </div>
+          <p>Across the portfolio, I have learned that a digital method is only as useful as the evidence behind it. A word list needs clear limits, a model’s extracted names need to be checked against the books, and phrase counts need to be read alongside the story. These projects also show that tools shape what becomes visible: prompts, categories and spelling choices all affect the result. Presenting the work online makes the methods and their uncertainties easier to inspect, and gives readers a route from summary to source.</p>
+          <details><summary>Methods note</summary><p>I used Python for the Malayalam word list and for organising textual data, retrieval-augmented generation for candidate plant and animal references, and a language-model skill for spelling checks. For the literary analysis, phrases were extracted, checked against the story and counted within researcher-defined segments. I report uncertain or unverified results as such, distinguish model suggestions from text-checked evidence, and link to the project pages and reports so readers can examine the work in context.</p></details>
+        </section>
+        <section class="content-section" aria-labelledby="sources-heading">
+          <div class="section-heading">
+            <span class="section-number" aria-hidden="true">03</span>
+            <h2 id="sources-heading">Sources and acknowledgements</h2>
+          </div>
+          <ul class="citation-list">
+            <li><strong>RAG Flora and Fauna:</strong> six public-domain works from Project Gutenberg; Sarojini Naidu, <em>The Bird of Time</em> (Wikisource); and Hansda Sowvendra Shekhar, <em>The Adivasi Will Not Dance</em> (copyrighted text). See the <a href="https://aslahghazali.github.io/ragfloraandfauna/" target="_blank" rel="noopener noreferrer">project exhibition</a> for the study and source notes.</li>
+            <li><strong>Tools:</strong> AnythingLLM, LM Studio, Google Gemma 3 4B, WordNet, Claude, Python and Plotly are credited in the relevant project pages and reports. The Necklace project uses Plotly for its interactive charts; see each linked project page for its method notes.</li>
+            <li><strong>Literary study:</strong> Guy de Maupassant, “The Necklace”; translation and edition details are given in the <a href="https://aslahghazali.github.io/sr-necklace/report.html" target="_blank" rel="noopener noreferrer">research report</a>.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <p>Aslah Ghazali &middot; Digital Humanities Portfolio &middot; IIT (ISM) Dhanbad</p>
+    </footer>
+    <script>
+      /*
+        Keeps the assignment labels and page navigation in sync. Students only need to copy,
+        delete, or move an .assignment block; this script does the numbering on page load.
+      */
+      (() => {
+        const assignments = [...document.querySelectorAll('.assignment')];
+        const contentsNav = document.querySelector('.contents-nav');
+        const contentsList = contentsNav?.querySelector('ul');
+
+        if (!assignments.length || !contentsList) {
+          if (contentsNav) contentsNav.hidden = true;
+          return;
+        }
+
+        const links = assignments.map((assignment, index) => {
+          const number = String(index + 1).padStart(2, '0');
+          const assignmentId = `assignment-${index + 1}`;
+          const heading = assignment.querySelector('h3');
+          const indexLabel = assignment.querySelector('.assignment-index');
+          const title = heading?.textContent.trim() || `Assignment ${number}`;
+
+          assignment.id = assignmentId;
+          if (heading) {
+            heading.id = `${assignmentId}-title`;
+            assignment.setAttribute('aria-labelledby', heading.id);
+          }
+          if (indexLabel) indexLabel.textContent = `Assignment ${number}`;
+
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = `#${assignmentId}`;
+          link.textContent = `Assignment ${number}: ${title}`;
+          item.append(link);
+          const site = assignment.dataset.site;
+          if (site) {
+            const separator = document.createTextNode(' · ');
+            const siteLink = document.createElement('a');
+            siteLink.href = site;
+            siteLink.target = '_blank';
+            siteLink.rel = 'noopener noreferrer';
+            siteLink.textContent = 'Project website';
+            item.append(separator, siteLink);
+          }
+          return item;
+        });
+
+        contentsList.replaceChildren(...links);
+      })();
+    </script>
+  </body>
+</html>
+
+
+
